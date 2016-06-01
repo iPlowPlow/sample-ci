@@ -1,7 +1,7 @@
 var request = ("supertest");
 var api = ("../index");
 
-describe ("api", function(){
+describe ("contacts", function(){
 	describe('GET /contacts', function(){
 		it('should return the list of contacts', function(){
 			return request(api)
@@ -10,6 +10,8 @@ describe ("api", function(){
 			.expect(200)
 		});
 	});
+		
+});
 	describe('POST /contacts/:name', function(){
 		it('should create a new contact', function(){
 			return request(api)
@@ -34,7 +36,11 @@ describe ("api", function(){
 			.send()
 			.expect(200)
 		})
+		it('should not be authorized ...', function(){
+			return request(api)
+			.post('/contact/exist')
+			.send()
+			.expect(403);
+		})
 	})
 	
-	
-});
